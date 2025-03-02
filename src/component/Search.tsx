@@ -1,4 +1,11 @@
-const Search = ({ searchTerm, setSearchTerm }) => {
+import React from "react";
+
+interface SearchProps {
+  searchTerm: string;
+  setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const Search: React.FC<SearchProps> = ({ searchTerm, setSearchTerm }) => {
   return (
     <div>
       <div className="bg-white/5 mt-[30px] backdrop-blur-md p-4 rounded-2xl border border-white/20 flex items-center gap-2 w-[640px] h-[68px] m-auto mb-[10px]">
@@ -10,7 +17,7 @@ const Search = ({ searchTerm, setSearchTerm }) => {
           className="placeholder:text-white text-white w-[530px] h-[40px] rounded-2xl outline-none focus:ring-0 border-none"
         />
       </div>
-      <h1 className="text-white text-center mt-[10px] text-[50px]"> {searchTerm}</h1>
+      <h1 className="text-white text-center mt-[10px] text-[50px]">{searchTerm}</h1>
     </div>
   );
 };

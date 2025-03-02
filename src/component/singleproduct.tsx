@@ -9,9 +9,19 @@ const API_OPTIONS = {
 
 const PLACEHOLDER_IMAGE = "https://via.placeholder.com/500x750?text=No+Poster";
 
-const MovieDetails = () => {
-  const { id } = useParams();
-  const [movie, setMovie] = useState(null);
+interface Movie {
+  id: number;
+  title: string;
+  release_date: string;
+  runtime: number;
+  overview: string;
+  poster_path: string | null;
+  backdrop_path: string | null;
+}
+
+const SingleProduct: React.FC = () => {
+  const { id } = useParams<{ id: string }>();
+  const [movie, setMovie] = useState<Movie | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -21,7 +31,7 @@ const MovieDetails = () => {
           `https://api.themoviedb.org/3/movie/${id}?language=en-US`,
           API_OPTIONS
         );
-        const data = await response.json();
+        const data: Movie = await response.json();
         setMovie(data);
       } catch (error) {
         console.error("Error fetching movie details:", error);
@@ -62,4 +72,4 @@ const MovieDetails = () => {
   );
 };
 
-export default MovieDetails;
+export default SingleProduct;
